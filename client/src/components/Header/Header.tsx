@@ -6,6 +6,9 @@ import { gmailLogo } from '../../Assests/index.ts';
 const StyledAppBar = styled(AppBar)({ // the component name must be in Capital always
     background: '#F5F5F5',
     boxShadow: 'none',
+    height: 58,
+    display:'flex',
+    justifyContent:'center'
 })
 
 const BoxWrapper = styled(Box)({
@@ -32,8 +35,8 @@ const Header = () => {
             <Toolbar>
                 <MenuIcon color='action' fontSize='medium' />
 
-                <div className='ps-4 h-full w-64'>
-                    <img src={gmailLogo} alt='gmail' />
+                <div className='ps-4 h-full w-64 flex items-center justify-center'>
+                    <img src={gmailLogo} alt='gmail' className='w-full h-[70%]' />
                 </div>
                 <BoxWrapper>
                     <Search color='action' />
