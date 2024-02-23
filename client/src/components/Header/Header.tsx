@@ -6,7 +6,7 @@ import { gmailLogo } from '../../Assests/index.ts';
 const StyledAppBar = styled(AppBar)({ // the component name must be in Capital always
     background: '#F5F5F5',
     boxShadow: 'none',
-    height: 60,
+    height: 58,
     display: 'flex',
     justifyContent: 'center',
     zIndex: 1000
@@ -14,7 +14,7 @@ const StyledAppBar = styled(AppBar)({ // the component name must be in Capital a
 
 const BoxWrapper = styled(Box)({
     background: '#EAF1FB',
-    marginLeft: 40,
+    marginLeft: 70,
     borderRadius: 30,
     height: 48,
     display: 'flex',
@@ -33,19 +33,20 @@ const Header = ({ toggleDrawer }) => {
         <StyledAppBar position='static'>
             <Toolbar>
                 <div className='flex w-[250px] items-center justify-between'>
-                    <div className='p-2 hover:bg-gray-200 rounded-full cursor-pointer' onClick={toggleDrawer}>
+                    <div className='pr-2 py-2 hover:bg-gray-200 rounded-full cursor-pointer' onClick={toggleDrawer}>
                         <MenuIcon color='action' fontSize='medium' />
                     </div>
 
-                    <div className='ps-4  w-36 flex items-center justify-center'>
-                        <img src={gmailLogo} alt='gmail' className='w-full h-[70%]' />
+                    <div className='ps-2 w-28 flex items-center justify-center'>
+                        <img src={gmailLogo} alt='gmail' className='w-full ' />
                     </div>
                 </div>
-                <BoxWrapper className='w-full !hidden md:!flex'>
+                <BoxWrapper className='w-full !hidden md:!flex' onClick={()=>console.log("cliekd")}>
                     <Search color='action' />
+                    {/* <input type='text' className='!text-black' value={'abcdefg'}/> */}
                     <InputBase
                         placeholder='Search in mail'
-                        inputProps={{ 'aria-label': 'Search in mail' }}
+                        className='!text-black !z-50'
                     />
                     <Tune color='action' />
                 </BoxWrapper>

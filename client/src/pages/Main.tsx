@@ -4,9 +4,10 @@ import Sidebar from '../components/Sidebar/Sidebar.tsx';
 import { Box, styled } from '@mui/material';
 
 
-const MainWrapper = styled(Box)`
-    display: flex;
-`;
+const MainWrapper = styled(Box)({
+    display: 'flex',
+    // marginTop: '60px'
+});
 
 const Main = () => {
     const [openDrawer, setOpenDrawer] = useState(true);
