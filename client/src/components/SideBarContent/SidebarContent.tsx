@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { Box, Button, styled, List, ListItem } from '@mui/material';
 import { CreateOutlined, KeyboardArrowDownOutlined, KeyboardArrowUpOutlined } from '@mui/icons-material';
 import { SEE_MORE_SIDEBAR_DATA, SIDE_BAR_DATA } from '../../Assests/constant.ts';
+import EmailEditor from '../ComposeEmail/ComposeEmail.tsx';
 
 const ButtonWrapper = styled(Button)({
     background: '#c2e7ff',
     border: 'none',
     padding: '0 24 0 0',
     borderRadius: 16,
-    marginLeft: 20,
+    marginLeft: 10,
     marginTop: 15,
     marginBottom: 10,
     height: 56,
@@ -29,16 +30,21 @@ const SidebarContent = () => {
 
     const [selectedSideMenu, setSelectedSideMenu] = useState('Inbox');
     const [seeMore, setSeeMore] = useState(false);
+    const [openComposeModal,setOpenComposeModal] = useState(false);
+
+    const openComposeDialog = () =>{
+        setOpenComposeModal(prevState => !prevState);
+    }
 
     return (
         <Box>
             <Box>
-                <ButtonWrapper variant="contained" href="#contained-buttons">
+                <ButtonWrapper variant="contained" href="#contained-buttons" onClick={openComposeDialog}>
                     <CreateOutlined className='mr-3 !text-black' color='action' />
                     <span className='text-gray-700 capitalize text-[14px] font-semibold'>Compose</span>
                 </ButtonWrapper>
             </Box>
-            <List className='!mx-5'>
+            <List className='!mx-3'>
                 {
                     SIDE_BAR_DATA.map((item) => {
                         return (
@@ -65,6 +71,7 @@ const SidebarContent = () => {
                     })
                 )}
             </List>
+            {openComposeModal && <EmailEditor openComposeDialog={openComposeDialog} openComposeModal={openComposeModal}/>}
         </Box>
     )
 }
