@@ -60,3 +60,10 @@ export const SEE_MORE_SIDEBAR_DATA = [
     icon: ReportOutlined,
   }
 ]
+
+export const emailConfig = {
+  Host: "smtp.elasticemail.com",
+  Username: process.env.REACT_APP_USERNAME,  // Put your user name from email js registration
+  Password: process.env.REACT_APP_USERNAME,      // Put your password from email js registration
+  Port: 2525,
+}
