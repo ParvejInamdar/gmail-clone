@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Button, styled, List, ListItem } from '@mui/material';
 import { CreateOutlined, KeyboardArrowDownOutlined, KeyboardArrowUpOutlined } from '@mui/icons-material';
-import { SEE_MORE_SIDEBAR_DATA, SIDE_BAR_DATA } from '../../Assests/constant.ts';
+import { SEE_MORE_SIDEBAR_DATA, SIDE_BAR_DATA } from '../../Assests/constant';
 import EmailEditor from '../ComposeEmail/ComposeEmail.tsx';
 
 const ButtonWrapper = styled(Button)({

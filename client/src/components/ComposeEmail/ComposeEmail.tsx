@@ -44,7 +44,7 @@ const ComposeEmail = ({ openComposeModal, openComposeDialog }) => {
          */}
       </Dialog>}
       {isMinimized &&
-        <div className='fixed bottom-0 right-10 bg-white w-[400px] shadow-lg border rounded-t-md'>
+        <div className='fixed bottom-0 right-16 bg-white w-[500px] shadow-lg border rounded-t-md'>
           <SimpleTextEditor closeDialog={closeDialog} isMinimize={isMinimized} openFullScreenComposeDialog={openFullScreenComposeDialog} />
         </div>
       }
