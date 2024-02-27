@@ -2,31 +2,57 @@ import { MinimizeOutlined, CloseFullscreenOutlined, CloseOutlined, DeleteOutline
 import { Button, InputBase } from '@mui/material';
 import React, { useState } from 'react';
 import { emailConfig } from '../../Assests/constant';
+import useApi  from '../../hooks/useApi.tsx';
+import { API_URLS_ENDPOINTS } from '../../Services/api.urls.ts';
 
 const SimpleTextEditor = ({ closeDialog, isMinimize, openFullScreenComposeDialog }) => {
     const [isReceipentInputFocus, setIsReceipentInputFocus] = useState(false);
+    const sendEmailAPIService = useApi(API_URLS_ENDPOINTS.saveSendEmail);
+
     const recipientsFocused = () => {
         setIsReceipentInputFocus(prevstate => !prevstate);
     }
     const [composeMailData, setComposeMailData] = useState({});
 
     const sendEmail = (event: any) => {
-        console.log("event", event);
         let emailData = {
             To: composeMailData['To'],
-            From: "abc@xyz.com",          // Put your registered Email to send the email
-            Subject:composeMailData['Subject'],
-            Body:composeMailData['Body']
+            From: "inamdarps1998@gmail.com",          // Put your registered Email to send the email
+            Subject: composeMailData['Subject'],
+            Body: composeMailData['Body']
         }
         event.preventDefault();
-          
+
         if ((window as any).Email) {
             (window as any).Email.send({
                 ...emailConfig,
                 ...emailData
             }).then(
-                message => alert(message)
+                message => console.log("message send succesfully")
             );
+        }
+        saveEmail();
+    }
+
+    const saveEmail = () => {
+        const payload = {
+            to: composeMailData['To'],
+            from: "abc@xyz.com",          // Put your registered Email to send the email
+            subject: composeMailData['Subject'],
+            body: composeMailData['Body'],
+            date:new Date(),
+            image: '',
+            name: 'gmail clone',
+            starred:false,
+            type:'sent',
+            bin:false,
+        }
+
+        sendEmailAPIService.call(payload);
+        if(!sendEmailAPIService.error){
+            setComposeMailData({});
+        } else {
+            alert(`error: ${sendEmailAPIService.error}`);
         }
         closeDialog();
     }
