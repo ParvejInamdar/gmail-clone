@@ -1,13 +1,15 @@
 import { MinimizeOutlined, CloseFullscreenOutlined, CloseOutlined, DeleteOutlineOutlined, OpenInFullRounded } from '@mui/icons-material';
 import { Button, InputBase } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { emailConfig } from '../../Assests/constant';
 import useApi  from '../../hooks/useApi.tsx';
 import { API_URLS_ENDPOINTS } from '../../Services/api.urls.ts';
+import { DialogContext } from '../SideBarContent/SidebarContent.tsx';
 
-const SimpleTextEditor = ({ closeDialog, isMinimize, openFullScreenComposeDialog }) => {
+const SimpleTextEditor = ({ isMinimize, openFullScreenComposeDialog }) => {
     const [isReceipentInputFocus, setIsReceipentInputFocus] = useState(false);
     const sendEmailAPIService = useApi(API_URLS_ENDPOINTS.saveSendEmail);
+    const {openComposeDialog,openComposeModal} = useContext(DialogContext);
 
     const recipientsFocused = () => {
         setIsReceipentInputFocus(prevstate => !prevstate);
@@ -37,7 +39,7 @@ const SimpleTextEditor = ({ closeDialog, isMinimize, openFullScreenComposeDialog
     const saveEmail = () => {
         const payload = {
             to: composeMailData['To'],
-            from: "abc@xyz.com",          // Put your registered Email to send the email
+            from: "inamdarps1998@gmail.com",          // Put your registered Email to send the email
             subject: composeMailData['Subject'],
             body: composeMailData['Body'],
             date:new Date(),
@@ -54,7 +56,7 @@ const SimpleTextEditor = ({ closeDialog, isMinimize, openFullScreenComposeDialog
         } else {
             alert(`error: ${sendEmailAPIService.error}`);
         }
-        closeDialog();
+        openComposeDialog();
     }
 
     const setComposeMailValues = (event: any) => {
@@ -63,7 +65,7 @@ const SimpleTextEditor = ({ closeDialog, isMinimize, openFullScreenComposeDialog
 
     return (
         <>
-            <div className='flex items-center justify-between bg-slate-100 w-full px-4 py-2'>
+            <div className='flex items-center justify-between bg-slate-100 w-full px-4 py-2 rounded-md'>
                 <div className='text-[14px] font-medium'>New Message</div>
                 <div className='flex'>
                     <div className='hover:bg-gray-300 me-1'>
@@ -74,7 +76,7 @@ const SimpleTextEditor = ({ closeDialog, isMinimize, openFullScreenComposeDialog
                             <CloseFullscreenOutlined className='text-gray-700 !text-[.875rem]' />
                         }
                     </div>
-                    <div onClick={closeDialog} className='hover:bg-gray-300 me-1 cursor-pointer'>
+                    <div onClick={openComposeDialog} className='hover:bg-gray-300 me-1 cursor-pointer'>
                         <CloseOutlined className='text-gray-700 !text-[.875rem]' />
                     </div>
                 </div>

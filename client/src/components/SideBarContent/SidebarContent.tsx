@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { Box, Button, styled, List, ListItem } from '@mui/material';
 import { CreateOutlined, KeyboardArrowDownOutlined, KeyboardArrowUpOutlined } from '@mui/icons-material';
 import { SEE_MORE_SIDEBAR_DATA, SIDE_BAR_DATA } from '../../Assests/constant';
@@ -25,6 +25,12 @@ const ListItemWrapper = styled(ListItem)({
     padding: '5px 15px',
     cursor: 'pointer'
 })
+
+export const DialogContext = createContext({
+    openComposeModal:false,
+    openComposeDialog:()=>{}
+});
+
 
 const SidebarContent = () => {
 
@@ -71,7 +77,9 @@ const SidebarContent = () => {
                     })
                 )}
             </List>
-            {openComposeModal && <EmailEditor openComposeDialog={openComposeDialog} openComposeModal={openComposeModal}/>}
+            {openComposeModal &&<DialogContext.Provider value={{openComposeDialog,openComposeModal}}>
+             <EmailEditor />
+            </DialogContext.Provider>}
         </Box>
     )
 }
