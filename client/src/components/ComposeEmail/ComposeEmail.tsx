@@ -1,13 +1,13 @@
-import React, { useRef, useState } from 'react';
-import { Button, Dialog, InputBase, TextField } from '@mui/material';
-import { MinimizeOutlined, CloseFullscreenOutlined, CloseOutlined, DeleteOutlineOutlined } from '@mui/icons-material';
-import { EditorState } from 'draft-js';
+import { Dialog } from '@mui/material';
+import React, { useContext, useState } from 'react';
+import { DialogContext } from '../SideBarContent/SidebarContent.tsx';
 import SimpleTextEditor from './SimpleTextEditor.tsx';
 
-const ComposeEmail = ({ openComposeModal, openComposeDialog }) => {
+const ComposeEmail = () => {
   // const [recipientsPlaceholder,setRecipientsPlaceholder] = useState('Recipients')
   const [isMinimized, setIsMinimized] = useState(true);
 
+  const {openComposeDialog,openComposeModal} = useContext(DialogContext);
   const closeDialog = () => {
     openComposeDialog();
   }
@@ -34,7 +34,7 @@ const ComposeEmail = ({ openComposeModal, openComposeDialog }) => {
         }}
       >
         <div className=' w-full h-full flex flex-col relative'>
-          <SimpleTextEditor closeDialog={closeDialog} isMinimize={isMinimized} openFullScreenComposeDialog={openFullScreenComposeDialog} />
+          <SimpleTextEditor isMinimize={isMinimized} openFullScreenComposeDialog={openFullScreenComposeDialog} />
         </div>
         {/* <div className='w-full h-[60%] max-h-[60%] bg-yellow-200 mt-1 relative overflow-hidden'>
           <div className='w-full h-full'>
@@ -44,8 +44,8 @@ const ComposeEmail = ({ openComposeModal, openComposeDialog }) => {
          */}
       </Dialog>}
       {isMinimized &&
-        <div className='fixed bottom-0 right-16 bg-white w-[500px] shadow-lg border rounded-t-md'>
-          <SimpleTextEditor closeDialog={closeDialog} isMinimize={isMinimized} openFullScreenComposeDialog={openFullScreenComposeDialog} />
+        <div className='fixed bottom-0 right-16 bg-white w-[500px] shadow-xl border rounded-t-md'>
+          <SimpleTextEditor isMinimize={isMinimized} openFullScreenComposeDialog={openFullScreenComposeDialog} />
         </div>
       }
 

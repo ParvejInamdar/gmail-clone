@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import Header from '../components/Header/Header.tsx';
 import Sidebar from '../components/Sidebar/Sidebar.tsx';
 import { Box, styled } from '@mui/material';
-
+import Emails from '../components/Email/email.tsx';
+import { Outlet } from 'react-router-dom';
+import SuspenseLoader from '../components/Suspense_Loader/suspenseLoader.tsx';
 
 const MainWrapper = styled(Box)({
     display: 'flex',
@@ -22,7 +24,10 @@ const Main = () => {
             <Header toggleDrawer={toggleDrawer} />
             <MainWrapper>
                 <Sidebar openDrawer={openDrawer} />
-                <div>All Mails</div>
+                <Suspense fallback={<SuspenseLoader />}>
+                    <Outlet context={{ openDrawer }}/>
+                </Suspense>
+                {/* <Emails openDrawer={openDrawer}/> */}
             </MainWrapper>
         </>
     )

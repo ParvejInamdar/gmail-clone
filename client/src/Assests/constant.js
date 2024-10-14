@@ -63,7 +63,7 @@ export const SEE_MORE_SIDEBAR_DATA = [
 
 export const emailConfig = {
   Host: "smtp.elasticemail.com",
-  Username: process.env.REACT_APP_USERNAME,  // Put your user name from email js registration
-  Password: process.env.REACT_APP_USERNAME,      // Put your password from email js registration
+  Username: 'gmailclonetest@yopmail.com',  // Put your user name from email js registration
+  Password: '834FEC083212A69242A8338F09C80359F60B',      // Put your password from email js registration
   Port: 2525,
 }
